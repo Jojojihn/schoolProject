@@ -1,2 +1,2 @@
 # schoolProject
-My schppl thing
+My school thing
