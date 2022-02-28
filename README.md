@@ -1,2 +1,2 @@
-# schoolProject
+# SchoolProject
 My school thing
