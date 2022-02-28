@@ -1,0 +1,32 @@
+[remap]
+
+importer="texture"
+type="StreamTexture"
+path="res://.import/I guess I text.png-fc9e0f717411ddf812e86e2a1bf153b7.stex"
+
+[deps]
+
+source_file="res://RPG/Grafiken/Text/I guess I text.png"
+source_md5="a17b2080d349634fba72eac0e121305b"
+
+dest_files=[ "res://.import/I guess I text.png-fc9e0f717411ddf812e86e2a1bf153b7.stex" ]
+dest_md5="6c6a32ddf670838ef5aa413d4ae7299f"
+
+[params]
+
+compress/mode=0
+compress/lossy_quality=0.7
+compress/hdr_mode=0
+compress/normal_map=0
+flags/repeat=0
+flags/filter=true
+flags/mipmaps=false
+flags/anisotropic=false
+flags/srgb=2
+process/fix_alpha_border=true
+process/premult_alpha=false
+process/HDR_as_SRGB=false
+stream=false
+size_limit=0
+detect_3d=true
+svg/scale=1.0
