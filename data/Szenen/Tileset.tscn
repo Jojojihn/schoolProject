@@ -9,6 +9,12 @@ texture = ExtResource( 1 )
 region_enabled = true
 region_rect = Rect2( 48, 32, 16, 16 )
 
+[node name="grass2" type="Sprite" parent="."]
+position = Vector2( 0, 18 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 48, 32, 16, 16 )
+
 [node name="grassBush" type="Sprite" parent="."]
 position = Vector2( 18, 0 )
 texture = ExtResource( 1 )
