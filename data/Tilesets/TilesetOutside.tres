@@ -1,6 +1,6 @@
 [gd_resource type="TileSet" load_steps=1020 format=2]
 
-[ext_resource path="res://data/Sprites/tileset-wesley.png" type="Texture" id=1]
+[ext_resource path="res://data/Sprites/environment/tileset-wesley.png" type="Texture" id=1]
 [ext_resource path="res://data/Material/waterFall.tres" type="Texture" id=2]
 [ext_resource path="res://data/Material/Cave.tres" type="Texture" id=3]
 [ext_resource path="res://data/Sprites/mall.png" type="Texture" id=4]
