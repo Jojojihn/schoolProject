@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/[muzhousebeat] Polish Cow.mp3-711f879ef0803125dc931ce076e707fb.mp3str"
+
+[deps]
+
+source_file="res://data/Audio/Best Cow Music in the fucking World/[muzhousebeat] Polish Cow.mp3"
+dest_files=[ "res://.import/[muzhousebeat] Polish Cow.mp3-711f879ef0803125dc931ce076e707fb.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

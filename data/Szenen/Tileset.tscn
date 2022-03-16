@@ -1,10 +1,8 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://data/Sprites/environment/tileset-wesley.png" type="Texture" id=1]
 [ext_resource path="res://data/Material/waterFall.tres" type="Texture" id=2]
 [ext_resource path="res://data/Material/Cave.tres" type="Texture" id=3]
-
-[sub_resource type="AnimatedTexture" id=1]
 
 [node name="Node2D" type="Node2D"]
 
@@ -160,7 +158,7 @@ region_rect = Rect2( 514, 310, 16, 16 )
 [node name="StaticBody2D" type="StaticBody2D" parent="berg16"]
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="berg16/StaticBody2D"]
-polygon = PoolVector2Array( -8, -8, -8, 8, 8, 8, 8, -7, 8, -8 )
+polygon = PoolVector2Array( -8, -8, -8, -5, 8, -5, 8, -7, 8, -8 )
 
 [node name="berg17" type="Sprite" parent="."]
 position = Vector2( 39, 172 )
@@ -171,7 +169,7 @@ region_rect = Rect2( 514, 329, 16, 16 )
 [node name="StaticBody2D" type="StaticBody2D" parent="berg17"]
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="berg17/StaticBody2D"]
-polygon = PoolVector2Array( -8, -8, -8, 8, 8, 8, 8, -7, 8, -8 )
+polygon = PoolVector2Array( -8, -8, -8, -5, 8, -5, 8, -7, 8, -8 )
 
 [node name="berg7" type="Sprite" parent="."]
 position = Vector2( 5, 121 )
@@ -413,12 +411,3 @@ position = Vector2( 76, 224 )
 texture = ExtResource( 1 )
 region_enabled = true
 region_rect = Rect2( 283, 322, 32, 16 )
-
-[node name="Cow" type="Sprite" parent="."]
-position = Vector2( 109, 216 )
-texture = SubResource( 1 )
-
-[node name="StaticBody2D" type="StaticBody2D" parent="Cow"]
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Cow/StaticBody2D"]
-polygon = PoolVector2Array( -9, 15, -5, 15, -3, 14, 0, 10, 2, 10, 2, 15, 6, 15, 10, 13, 10, 6, 13, 5, 16, 3, 16, -7, 5, -7, -10, -2, -14, 6, -14, 8 )

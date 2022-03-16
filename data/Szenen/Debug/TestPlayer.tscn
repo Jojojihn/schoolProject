@@ -10,18 +10,20 @@ var vel = Vector2()
 
 func _process(delta):
 	if(Input.is_action_pressed(\"ui_up\")):
-		vel.y =-20
+		vel.y =-60
 	elif(Input.is_action_pressed(\"ui_down\")):
-		vel.y =20
+		vel.y =60
 	else:
 		vel.y = 0
 	if(Input.is_action_pressed(\"ui_left\")):
-		vel.x =-20
+		vel.x =-60
 	elif(Input.is_action_pressed(\"ui_right\")):
-		vel.x =20
+		vel.x =60
 	else:
 		vel.x = 0
 	vel = move_and_slide(vel)
+	if(Input.is_action_just_pressed(\"R\")):
+		get_tree().reload_current_scene()
 "
 
 [sub_resource type="RectangleShape2D" id=2]
@@ -38,3 +40,4 @@ texture = ExtResource( 1 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
 current = true
+zoom = Vector2( 0.4, 0.4 )
