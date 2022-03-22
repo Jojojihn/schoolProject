@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://data/Sprites/Character.png" type="Texture" id=1]
 
@@ -6,32 +6,28 @@
 script/source = "extends KinematicBody2D
 
 
-var velocity = Vector2()
+var vel = Vector2()
 
+func _process(delta):
+	if(Input.is_action_pressed(\"ui_up\")):
+		vel.y =-60
+	elif(Input.is_action_pressed(\"ui_down\")):
+		vel.y =60
+	else:
+		vel.y = 0
+	if(Input.is_action_pressed(\"ui_left\")):
+		vel.x =-60
+	elif(Input.is_action_pressed(\"ui_right\")):
+		vel.x =60
+	else:
+		vel.x = 0
+	vel = move_and_slide(vel)
+	if(Input.is_action_just_pressed(\"R\")):
+		get_tree().reload_current_scene()
 
 func _on_AnimatedSprite_frame_changed():
 	pass # Replace with function body.
 "
-
-[sub_resource type="AtlasTexture" id=2]
-flags = 4
-atlas = ExtResource( 1 )
-region = Rect2( 0, 1198, 400, 599 )
-
-[sub_resource type="AtlasTexture" id=3]
-flags = 4
-atlas = ExtResource( 1 )
-region = Rect2( 400, 1198, 400, 599 )
-
-[sub_resource type="AtlasTexture" id=4]
-flags = 4
-atlas = ExtResource( 1 )
-region = Rect2( 800, 1198, 400, 599 )
-
-[sub_resource type="AtlasTexture" id=5]
-flags = 4
-atlas = ExtResource( 1 )
-region = Rect2( 1200, 1198, 400, 599 )
 
 [sub_resource type="AtlasTexture" id=6]
 flags = 4
@@ -53,25 +49,25 @@ flags = 4
 atlas = ExtResource( 1 )
 region = Rect2( 1200, 1797, 400, 599 )
 
-[sub_resource type="AtlasTexture" id=10]
+[sub_resource type="AtlasTexture" id=2]
 flags = 4
 atlas = ExtResource( 1 )
-region = Rect2( 0, 0, 400, 599 )
+region = Rect2( 0, 1198, 400, 599 )
 
-[sub_resource type="AtlasTexture" id=11]
+[sub_resource type="AtlasTexture" id=3]
 flags = 4
 atlas = ExtResource( 1 )
-region = Rect2( 400, 0, 400, 599 )
+region = Rect2( 400, 1198, 400, 599 )
 
-[sub_resource type="AtlasTexture" id=12]
+[sub_resource type="AtlasTexture" id=4]
 flags = 4
 atlas = ExtResource( 1 )
-region = Rect2( 800, 0, 400, 599 )
+region = Rect2( 800, 1198, 400, 599 )
 
-[sub_resource type="AtlasTexture" id=13]
+[sub_resource type="AtlasTexture" id=5]
 flags = 4
 atlas = ExtResource( 1 )
-region = Rect2( 1200, 0, 400, 599 )
+region = Rect2( 1200, 1198, 400, 599 )
 
 [sub_resource type="AtlasTexture" id=14]
 flags = 4
@@ -93,28 +89,52 @@ flags = 4
 atlas = ExtResource( 1 )
 region = Rect2( 1200, 599, 400, 599 )
 
+[sub_resource type="AtlasTexture" id=10]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 0, 0, 400, 599 )
+
+[sub_resource type="AtlasTexture" id=11]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 400, 0, 400, 599 )
+
+[sub_resource type="AtlasTexture" id=12]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 800, 0, 400, 599 )
+
+[sub_resource type="AtlasTexture" id=13]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 1200, 0, 400, 599 )
+
 [sub_resource type="SpriteFrames" id=18]
 animations = [ {
-"frames": [ SubResource( 2 ), SubResource( 3 ), SubResource( 4 ), SubResource( 5 ) ],
-"loop": true,
-"name": "left",
-"speed": 5.0
-}, {
 "frames": [ SubResource( 6 ), SubResource( 7 ), SubResource( 8 ), SubResource( 9 ) ],
 "loop": true,
 "name": "right",
 "speed": 5.0
 }, {
-"frames": [ SubResource( 10 ), SubResource( 11 ), SubResource( 12 ), SubResource( 13 ) ],
+"frames": [ SubResource( 2 ), SubResource( 3 ), SubResource( 4 ), SubResource( 5 ) ],
 "loop": true,
-"name": "forward",
+"name": "left",
 "speed": 5.0
 }, {
 "frames": [ SubResource( 14 ), SubResource( 15 ), SubResource( 16 ), SubResource( 17 ) ],
 "loop": true,
 "name": "backward",
 "speed": 5.0
+}, {
+"frames": [ SubResource( 10 ), SubResource( 11 ), SubResource( 12 ), SubResource( 13 ) ],
+"loop": true,
+"name": "forward",
+"speed": 5.0
 } ]
+
+[sub_resource type="CapsuleShape2D" id=19]
+radius = 137.0
+height = 184.0
 
 [node name="Player" type="KinematicBody2D"]
 script = SubResource( 1 )
@@ -124,5 +144,9 @@ frames = SubResource( 18 )
 animation = "forward"
 frame = 2
 playing = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( -5, 29 )
+shape = SubResource( 19 )
 
 [connection signal="frame_changed" from="AnimatedSprite" to="." method="_on_AnimatedSprite_frame_changed"]
