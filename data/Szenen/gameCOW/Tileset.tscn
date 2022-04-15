@@ -171,6 +171,28 @@ region_rect = Rect2( 514, 329, 16, 16 )
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="berg17/StaticBody2D"]
 polygon = PoolVector2Array( -8, -8, -8, -5, 8, -5, 8, -7, 8, -8 )
 
+[node name="berg18" type="Sprite" parent="."]
+position = Vector2( 57, 172 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 531, 310, 16, 16 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="berg18"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="berg18/StaticBody2D"]
+polygon = PoolVector2Array( -8, -8, -8, -5, 8, -5, 8, -7, 8, -8 )
+
+[node name="berg19" type="Sprite" parent="."]
+position = Vector2( 74, 172 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 531, 329, 16, 16 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="berg19"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="berg19/StaticBody2D"]
+polygon = PoolVector2Array( -8, -3, -7, -3, -6, -4, -6, -8, 3, -8, 3, 8, -8, 8 )
+
 [node name="berg7" type="Sprite" parent="."]
 position = Vector2( 5, 121 )
 texture = ExtResource( 1 )
