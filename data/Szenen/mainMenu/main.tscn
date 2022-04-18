@@ -29,9 +29,14 @@ func _on_Button2_pressed():
 
 func _on_Button3_pressed():
 	get_tree().change_scene(\"res://data/Szenen/MinecraftClone/MinecraftGame.tscn\")
+
+
+func _on_Button4_pressed():
+	get_tree().change_scene(\"res://data/Szenen/Tapper/TapperGame.tscn\")
 "
 
 [node name="Node2D" type="Node2D"]
+position = Vector2( 262, 159 )
 script = SubResource( 1 )
 
 [node name="Button" type="Button" parent="."]
@@ -64,6 +69,17 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="Button4" type="Button" parent="."]
+margin_left = 359.0
+margin_top = 82.0
+margin_right = 439.0
+margin_bottom = 133.0
+text = "Tapper"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [connection signal="pressed" from="Button" to="." method="_on_Button_pressed"]
 [connection signal="pressed" from="Button2" to="." method="_on_Button2_pressed"]
 [connection signal="pressed" from="Button3" to="." method="_on_Button3_pressed"]
+[connection signal="pressed" from="Button4" to="." method="_on_Button4_pressed"]

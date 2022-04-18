@@ -74,8 +74,8 @@ func _input(event):
 					var directionToBuild = result.get(\"normal\")
 					var instance = block.instance()
 					instance.name = \"block\"+str(blockcount)
-					instance.global_translate($Camera/RayCast.get_collider().global_transform.origin+(result.get(\"normal\")*2))
 					get_parent().add_child(instance)
+					instance.global_translate($Camera/RayCast.get_collider().global_transform.origin+(result.get(\"normal\")*2))
 					print(\"A\")
 
 

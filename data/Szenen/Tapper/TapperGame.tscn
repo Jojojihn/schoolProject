@@ -1,0 +1,264 @@
+[gd_scene load_steps=15 format=2]
+
+[ext_resource path="res://data/Sprites/tapperBG.png" type="Texture" id=1]
+[ext_resource path="res://data/Sprites/Tapper/8.png" type="Texture" id=2]
+[ext_resource path="res://data/Sprites/Tapper/7.png" type="Texture" id=3]
+[ext_resource path="res://data/Sprites/Tapper/9.png" type="Texture" id=4]
+[ext_resource path="res://data/Sprites/Tapper/2.png" type="Texture" id=5]
+[ext_resource path="res://data/Sprites/Tapper/6.png" type="Texture" id=6]
+[ext_resource path="res://data/Sprites/Tapper/5.png" type="Texture" id=7]
+[ext_resource path="res://data/Sprites/Tapper/4.png" type="Texture" id=8]
+[ext_resource path="res://data/Sprites/Tapper/3.png" type="Texture" id=9]
+[ext_resource path="res://data/Sprites/Tapper/1.png" type="Texture" id=10]
+[ext_resource path="res://data/Sprites/Tapper/10.png" type="Texture" id=11]
+[ext_resource path="res://data/Sprites/textbox_blue.png" type="Texture" id=12]
+
+[sub_resource type="GDScript" id=2]
+script/source = "extends Node2D
+
+
+var row = 0
+var tapping = false
+var beer = preload(\"res://data/Szenen/Tapper/Bier.tscn\")
+var customer = preload(\"res://data/Szenen/Tapper/Kunde.tscn\")
+
+func _process(delta):
+	$\"0\".hide()
+	$\"1\".hide()
+	$\"2\".hide()
+	$\"3\".hide()
+	get_node(str(row)).show()
+	if(Input.is_action_just_pressed(\"S\")):
+		row+=1
+		if(row>3):
+			row=3
+	if(Input.is_action_just_pressed(\"W\")):
+		row-=1
+		if(row<0):
+			row=0
+	if(Input.is_action_pressed(\"Space\")):
+		tapping = true
+	else:
+		tapping = false
+	
+	if(Input.is_action_just_pressed(\"R\")):
+		get_tree().reload_current_scene()
+	if(Input.is_action_just_pressed(\"ESC\")):
+		get_tree().change_scene(\"res://data/Szenen/mainMenu/main.tscn\")
+	
+	if(tapping):
+		get_node(str(row)).animation = \"Tapping\"
+	else:
+		get_node(str(row)).animation = \"default\"
+	
+	if(get_node(str(row)).frame==8):
+		var instance = beer.instance()
+		get_node(\"Bier\"+str(row+1)).add_child(instance)
+	
+func failed():
+	get_tree().paused = true
+	$CanvasLayer/Sprite2.show()
+
+
+func _on_Timer_timeout():
+	randomize()
+	var ran = randi()%4+1
+	var instance = customer.instance()
+	get_node(\"CustomerSpawn\"+str(ran)).add_child(instance)
+
+func _ready():
+	get_tree().paused=true
+
+func _on_Button_pressed():
+	get_tree().paused=false
+	$CanvasLayer/Sprite.hide()
+
+
+func _on_a_pressed():
+	get_tree().reload_current_scene()
+"
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 11 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 10 ), ExtResource( 5 ), ExtResource( 9 ), ExtResource( 8 ), ExtResource( 7 ), ExtResource( 6 ), ExtResource( 3 ), ExtResource( 2 ), ExtResource( 4 ) ],
+"loop": false,
+"name": "Tapping",
+"speed": 10.0
+} ]
+
+[node name="Node2D" type="Node2D"]
+script = SubResource( 2 )
+
+[node name="BG" type="Sprite" parent="."]
+texture = ExtResource( 1 )
+
+[node name="0" type="AnimatedSprite" parent="."]
+visible = false
+position = Vector2( 216, -205 )
+scale = Vector2( 1.8, 1.8 )
+frames = SubResource( 1 )
+playing = true
+
+[node name="1" type="AnimatedSprite" parent="."]
+visible = false
+position = Vector2( 288, -46 )
+scale = Vector2( 1.8, 1.8 )
+frames = SubResource( 1 )
+playing = true
+
+[node name="2" type="AnimatedSprite" parent="."]
+visible = false
+position = Vector2( 355, 110 )
+scale = Vector2( 1.8, 1.8 )
+frames = SubResource( 1 )
+playing = true
+
+[node name="3" type="AnimatedSprite" parent="."]
+visible = false
+position = Vector2( 424, 270 )
+scale = Vector2( 1.8, 1.8 )
+frames = SubResource( 1 )
+playing = true
+
+[node name="Camera2D" type="Camera2D" parent="."]
+current = true
+zoom = Vector2( 1.03, 1.3 )
+
+[node name="CustomerSpawn1" type="Node2D" parent="."]
+position = Vector2( -239, -130 )
+
+[node name="CustomerSpawn2" type="Node2D" parent="."]
+position = Vector2( -323, 25 )
+
+[node name="CustomerSpawn3" type="Node2D" parent="."]
+position = Vector2( -391, 190 )
+
+[node name="CustomerSpawn4" type="Node2D" parent="."]
+position = Vector2( -453, 349 )
+
+[node name="Bier1" type="Node2D" parent="."]
+position = Vector2( 156, -201 )
+
+[node name="Bier2" type="Node2D" parent="."]
+position = Vector2( 222, -39 )
+
+[node name="Bier3" type="Node2D" parent="."]
+position = Vector2( 297, 120 )
+
+[node name="Bier4" type="Node2D" parent="."]
+position = Vector2( 355, 277 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
+polygon = PoolVector2Array( -457, 263, -457, 333, -569, 336, -317, -414, -240, -289, -261, -211, -261, -171, -328, -68, -329, -3, -398, 98, -398, 156 )
+
+[node name="Timer" type="Timer" parent="."]
+autostart = true
+
+[node name="Area2D" type="Area2D" parent="." groups=["end"]]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
+position = Vector2( 30, -15 )
+polygon = PoolVector2Array( 152, -230, 181, -140, 244, 24, 314, 187, 377, 336, 446, 458, 753, 136, 493, -359 )
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Sprite" type="Sprite" parent="CanvasLayer"]
+position = Vector2( 534, 295 )
+scale = Vector2( 0.892045, 0.786364 )
+texture = ExtResource( 12 )
+
+[node name="Label" type="Label" parent="CanvasLayer/Sprite"]
+margin_left = -90.8026
+margin_top = -277.225
+margin_right = -47.8026
+margin_bottom = -263.225
+rect_scale = Vector2( 4, 4 )
+text = "Tapper"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label2" type="Label" parent="CanvasLayer/Sprite"]
+margin_left = -251.108
+margin_top = -209.827
+margin_right = -88.1083
+margin_bottom = -76.8266
+rect_scale = Vector2( 3, 3 )
+text = "W und S um hoch und runter zu gehen.
+Space um ein Bier zu zapfen.
+Space loslassen wenn das Bier fertig ist.
+R für Restart
+ESC für Hauptmenü"
+align = 1
+valign = 1
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Button" type="Button" parent="CanvasLayer/Sprite"]
+pause_mode = 2
+margin_left = -54.9299
+margin_top = 203.468
+margin_right = -19.9299
+margin_bottom = 223.468
+rect_scale = Vector2( 3, 3 )
+text = "OK!"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Sprite2" type="Sprite" parent="CanvasLayer"]
+visible = false
+position = Vector2( 534, 295 )
+scale = Vector2( 0.892045, 0.786364 )
+texture = ExtResource( 12 )
+
+[node name="Label" type="Label" parent="CanvasLayer/Sprite2"]
+margin_left = -90.8026
+margin_top = -277.225
+margin_right = -47.8026
+margin_bottom = -263.225
+rect_scale = Vector2( 4, 4 )
+text = "Verloren"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label2" type="Label" parent="CanvasLayer/Sprite2"]
+margin_left = -251.108
+margin_top = -209.827
+margin_right = -88.1083
+margin_bottom = -76.8266
+rect_scale = Vector2( 3, 3 )
+text = "Du hast verloren.
+Drücke den Knopf um neu zu starten."
+align = 1
+valign = 1
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="a" type="Button" parent="CanvasLayer/Sprite2"]
+pause_mode = 2
+margin_left = -105.376
+margin_top = 113.179
+margin_right = -38.3758
+margin_bottom = 133.179
+rect_scale = Vector2( 3, 3 )
+text = "Neustart"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
+[connection signal="pressed" from="CanvasLayer/Sprite/Button" to="." method="_on_Button_pressed"]
+[connection signal="pressed" from="CanvasLayer/Sprite2/a" to="." method="_on_a_pressed"]
