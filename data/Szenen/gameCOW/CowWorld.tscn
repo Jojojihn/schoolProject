@@ -9,9 +9,6 @@ script/source = "extends Node2D
 
 
 var playerLocation =Vector2(0,0)
-
-func _process(delta):
-	print(playerLocation)
 "
 
 [node name="Node2D" type="Node2D"]
@@ -39,34 +36,154 @@ tile_data = PoolIntArray( 65570, 536870933, 0, 131113, 1073741871, 0, 131114, 42
 position = Vector2( 122, 230 )
 
 [node name="Cow" parent="." instance=ExtResource( 3 )]
-position = Vector2( 155, 244 )
+position = Vector2( 172, 231 )
 
 [node name="Cow2" parent="." instance=ExtResource( 3 )]
-position = Vector2( 155, 244 )
+position = Vector2( 268, 225 )
 
 [node name="Cow3" parent="." instance=ExtResource( 3 )]
-position = Vector2( 155, 244 )
+position = Vector2( 201, 242 )
 
 [node name="Cow4" parent="." instance=ExtResource( 3 )]
-position = Vector2( 155, 244 )
+position = Vector2( 261, 258 )
 
 [node name="Cow5" parent="." instance=ExtResource( 3 )]
-position = Vector2( 155, 244 )
+position = Vector2( 195, 280 )
 
 [node name="Cow6" parent="." instance=ExtResource( 3 )]
-position = Vector2( 155, 244 )
+position = Vector2( 193, 203 )
 
 [node name="Cow7" parent="." instance=ExtResource( 3 )]
-position = Vector2( 155, 244 )
+position = Vector2( 231, 237 )
 
 [node name="Cow8" parent="." instance=ExtResource( 3 )]
-position = Vector2( 155, 244 )
+position = Vector2( 264, 188 )
 
 [node name="Cow9" parent="." instance=ExtResource( 3 )]
-position = Vector2( 155, 244 )
+position = Vector2( 247, 287 )
 
 [node name="Cow10" parent="." instance=ExtResource( 3 )]
-position = Vector2( 155, 244 )
+position = Vector2( 307, 235 )
+
+[node name="Cow11" parent="." instance=ExtResource( 3 )]
+position = Vector2( 315, 569 )
+
+[node name="Cow12" parent="." instance=ExtResource( 3 )]
+position = Vector2( 411, 563 )
+
+[node name="Cow13" parent="." instance=ExtResource( 3 )]
+position = Vector2( 344, 580 )
+
+[node name="Cow14" parent="." instance=ExtResource( 3 )]
+position = Vector2( 404, 596 )
+
+[node name="Cow15" parent="." instance=ExtResource( 3 )]
+position = Vector2( 338, 618 )
+
+[node name="Cow16" parent="." instance=ExtResource( 3 )]
+position = Vector2( 336, 541 )
+
+[node name="Cow17" parent="." instance=ExtResource( 3 )]
+position = Vector2( 374, 575 )
+
+[node name="Cow18" parent="." instance=ExtResource( 3 )]
+position = Vector2( 407, 526 )
+
+[node name="Cow19" parent="." instance=ExtResource( 3 )]
+position = Vector2( 390, 625 )
+
+[node name="Cow20" parent="." instance=ExtResource( 3 )]
+position = Vector2( 450, 573 )
+
+[node name="Cow21" parent="." instance=ExtResource( 3 )]
+position = Vector2( 279, 1262 )
+
+[node name="Cow22" parent="." instance=ExtResource( 3 )]
+position = Vector2( 375, 1256 )
+
+[node name="Cow23" parent="." instance=ExtResource( 3 )]
+position = Vector2( 308, 1273 )
+
+[node name="Cow24" parent="." instance=ExtResource( 3 )]
+position = Vector2( 368, 1289 )
+
+[node name="Cow25" parent="." instance=ExtResource( 3 )]
+position = Vector2( 302, 1311 )
+
+[node name="Cow26" parent="." instance=ExtResource( 3 )]
+position = Vector2( 300, 1234 )
+
+[node name="Cow27" parent="." instance=ExtResource( 3 )]
+position = Vector2( 338, 1268 )
+
+[node name="Cow28" parent="." instance=ExtResource( 3 )]
+position = Vector2( 371, 1219 )
+
+[node name="Cow29" parent="." instance=ExtResource( 3 )]
+position = Vector2( 354, 1318 )
+
+[node name="Cow30" parent="." instance=ExtResource( 3 )]
+position = Vector2( 414, 1266 )
+
+[node name="Cow31" parent="." instance=ExtResource( 3 )]
+position = Vector2( 1238, 1151 )
+
+[node name="Cow32" parent="." instance=ExtResource( 3 )]
+position = Vector2( 1334, 1145 )
+
+[node name="Cow33" parent="." instance=ExtResource( 3 )]
+position = Vector2( 1267, 1162 )
+
+[node name="Cow34" parent="." instance=ExtResource( 3 )]
+position = Vector2( 1327, 1178 )
+
+[node name="Cow35" parent="." instance=ExtResource( 3 )]
+position = Vector2( 1261, 1200 )
+
+[node name="Cow36" parent="." instance=ExtResource( 3 )]
+position = Vector2( 1259, 1123 )
+
+[node name="Cow37" parent="." instance=ExtResource( 3 )]
+position = Vector2( 1297, 1157 )
+
+[node name="Cow38" parent="." instance=ExtResource( 3 )]
+position = Vector2( 1330, 1108 )
+
+[node name="Cow39" parent="." instance=ExtResource( 3 )]
+position = Vector2( 1313, 1207 )
+
+[node name="Cow40" parent="." instance=ExtResource( 3 )]
+position = Vector2( 1373, 1155 )
+
+[node name="Cow41" parent="." instance=ExtResource( 3 )]
+position = Vector2( 1287, 354 )
+
+[node name="Cow42" parent="." instance=ExtResource( 3 )]
+position = Vector2( 1383, 348 )
+
+[node name="Cow43" parent="." instance=ExtResource( 3 )]
+position = Vector2( 1316, 365 )
+
+[node name="Cow44" parent="." instance=ExtResource( 3 )]
+position = Vector2( 1376, 381 )
+
+[node name="Cow45" parent="." instance=ExtResource( 3 )]
+position = Vector2( 1310, 403 )
+
+[node name="Cow46" parent="." instance=ExtResource( 3 )]
+position = Vector2( 1308, 326 )
+
+[node name="Cow47" parent="." instance=ExtResource( 3 )]
+position = Vector2( 1346, 360 )
+
+[node name="Cow48" parent="." instance=ExtResource( 3 )]
+position = Vector2( 1379, 311 )
+
+[node name="Cow49" parent="." instance=ExtResource( 3 )]
+position = Vector2( 1362, 410 )
+
+[node name="Cow50" parent="." instance=ExtResource( 3 )]
+position = Vector2( 1422, 358 )
 
 [node name="above" type="TileMap" parent="."]
 tile_set = ExtResource( 1 )

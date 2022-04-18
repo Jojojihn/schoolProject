@@ -1,0 +1,141 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://data/Sprites/environment/NES - Super Mario Bros - Tileset.png" type="Texture" id=1]
+[ext_resource path="res://data/Tilesets/PlatformerTileset.tres" type="TileSet" id=2]
+[ext_resource path="res://icon.png" type="Texture" id=3]
+[ext_resource path="res://data/Sprites/textbox_blue.png" type="Texture" id=4]
+
+[sub_resource type="GDScript" id=3]
+script/source = "extends Node2D
+
+
+
+func turnL():
+	$Node2D.rotation_degrees+=1
+
+func turnR():
+	$Node2D.rotation_degrees-=1
+"
+
+[sub_resource type="GDScript" id=1]
+script/source = "extends KinematicBody2D
+
+
+export (int) var speed = 120
+export (int) var jump_speed = -300
+export (int) var gravity = 400
+
+var velocity = Vector2.ZERO
+
+func _ready():
+	get_tree().paused = true
+
+func get_input():
+	velocity.x = 0
+	if(Input.is_action_pressed(\"D\")):
+		velocity.x += speed
+	if(Input.is_action_pressed(\"A\")):
+		velocity.x -= speed
+	if(Input.is_action_pressed(\"Q\")):
+		get_parent().turnL()
+	if(Input.is_action_pressed(\"E\")):
+		get_parent().turnR()
+	if(Input.is_action_just_pressed(\"R\")):
+		get_tree().reload_current_scene()
+	if(Input.is_action_just_pressed(\"ESC\")):
+		get_tree().change_scene(\"res://data/Szenen/mainMenu/main.tscn\")
+
+func _physics_process(delta):
+	get_input()
+	velocity.y += gravity * delta
+	velocity = move_and_slide(velocity, Vector2.UP)
+	if Input.is_action_pressed(\"W\"):
+		if is_on_floor():
+			velocity.y = jump_speed
+
+
+func _on_Button_pressed():
+	get_tree().paused = false
+	$Camera2D/CanvasLayer/Sprite.hide()
+"
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 8, 8 )
+
+[node name="Node2D" type="Node2D"]
+script = SubResource( 3 )
+
+[node name="Node2D" type="Node2D" parent="."]
+rotation = -6.28319
+
+[node name="Sprite" type="Sprite" parent="Node2D"]
+scale = Vector2( 1982.1, 1510.33 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 347.075, 642.104, 10.281, 9.38135 )
+
+[node name="TileMap" type="TileMap" parent="Node2D"]
+tile_set = ExtResource( 2 )
+cell_size = Vector2( 16, 16 )
+format = 1
+tile_data = PoolIntArray( -1048608, 0, 0, -1048607, 0, 0, -1048606, 0, 0, -1048605, 0, 0, -1048604, 0, 0, -1048603, 0, 0, -1048602, 0, 0, -1048601, 0, 0, -1048600, 0, 0, -1048599, 0, 0, -1048598, 0, 0, -1048597, 0, 0, -1048596, 0, 0, -1048595, 0, 0, -1048594, 0, 0, -1048593, 0, 0, -1048592, 0, 0, -1048591, 0, 0, -1048590, 0, 0, -1048589, 0, 0, -1048588, 0, 0, -1048587, 0, 0, -1048586, 0, 0, -1048585, 0, 0, -1048584, 0, 0, -1048583, 0, 0, -1048582, 0, 0, -1048581, 0, 0, -1048580, 0, 0, -1048579, 0, 0, -1048578, 0, 0, -1048577, 0, 0, -1114112, 0, 0, -1114111, 0, 0, -1114110, 0, 0, -1114109, 0, 0, -1114108, 0, 0, -1114107, 0, 0, -1114106, 0, 0, -1114105, 0, 0, -1114104, 0, 0, -1114103, 0, 0, -1114102, 0, 0, -1114101, 0, 0, -1114100, 0, 0, -1114099, 0, 0, -1114098, 0, 0, -1114097, 0, 0, -1114096, 0, 0, -1114095, 0, 0, -1114094, 0, 0, -1114093, 0, 0, -1114092, 0, 0, -1114091, 0, 0, -1114090, 0, 0, -1114089, 0, 0, -1114088, 0, 0, -1114087, 0, 0, -1114086, 0, 0, -1114085, 0, 0, -1114084, 0, 0, -1114083, 0, 0, -1114082, 0, 0, -1114081, 0, 0, -1114080, 0, 0, -983072, 0, 0, -1048569, 4, 0, -1048544, 0, 0, -917536, 0, 0, -983033, 4, 0, -983008, 0, 0, -852000, 0, 0, -917497, 4, 0, -917489, 1, 0, -917488, 1, 0, -917487, 1, 0, -917486, 1, 0, -917485, 1, 0, -917484, 1, 0, -917483, 1, 0, -917482, 1, 0, -917481, 1, 0, -917472, 0, 0, -786464, 0, 0, -851961, 1610612739, 0, -851936, 0, 0, -720928, 0, 0, -786400, 0, 0, -655392, 0, 0, -655386, 1, 0, -655385, 1, 0, -655384, 1, 0, -720892, 1, 0, -720891, 1, 0, -720890, 1, 0, -720864, 0, 0, -589856, 0, 0, -589838, 1, 0, -589837, 1, 0, -589836, 1, 0, -589835, 1, 0, -589834, 1, 0, -589826, 1, 0, -655333, 1, 0, -655328, 0, 0, -524320, 0, 0, -524290, 1, 0, -589811, 1, 0, -589797, 1, 0, -589792, 0, 0, -458784, 0, 0, -458754, 1, 0, -524275, 1, 0, -524261, 1, 0, -524256, 0, 0, -393248, 0, 0, -393241, 1, 0, -458739, 1, 0, -458725, 1, 0, -458720, 0, 0, -327712, 0, 0, -327705, 1, 0, -327697, 3, 0, -393203, 1, 0, -393189, 1, 0, -393184, 0, 0, -262176, 0, 0, -262169, 1, 0, -262161, 4, 0, -327667, 1, 0, -327662, 1, 0, -327661, 1, 0, -327660, 1, 0, -327659, 1, 0, -327653, 1, 0, -327648, 0, 0, -196640, 0, 0, -196625, 4, 0, -196620, 2, 0, -262117, 1, 0, -262112, 0, 0, -131104, 0, 0, -131089, 4, 0, -131084, 2, 0, -196581, 1, 0, -196576, 0, 0, -65568, 0, 0, -65553, 4, 0, -65548, 2, 0, -65541, 2, 0, -131072, 2, 0, -131071, 2, 0, -131070, 2, 0, -131069, 2, 0, -131068, 2, 0, -131040, 0, 0, -32, 0, 0, -17, 4, 0, -12, 2, 0, -5, 2, 0, -65504, 0, 0, 65504, 0, 0, 65519, 2, 0, 65520, 2, 0, 65521, 2, 0, 65522, 2, 0, 65523, 2, 0, 65524, 2, 0, 32, 0, 0, 131040, 0, 0, 131055, 4, 0, 131060, 2, 0, 65568, 0, 0, 196576, 0, 0, 196591, 4, 0, 196596, 2, 0, 131079, 2, 0, 131104, 0, 0, 262112, 0, 0, 262115, 1, 0, 262127, 4, 0, 262132, 2, 0, 196615, 2, 0, 196640, 0, 0, 327648, 0, 0, 327651, 1, 0, 327663, 4, 0, 327678, 1, 0, 327679, 1, 0, 262151, 2, 0, 262167, 1, 0, 262168, 1, 0, 262169, 1, 0, 262176, 0, 0, 393184, 0, 0, 393187, 1, 0, 393199, 1610612739, 0, 327687, 2, 0, 327712, 0, 0, 458720, 0, 0, 458723, 1, 0, 393229, 1, 0, 393248, 0, 0, 524256, 0, 0, 524259, 1, 0, 524264, 1, 0, 524265, 1, 0, 524266, 1, 0, 458765, 1, 0, 458784, 0, 0, 589792, 0, 0, 524301, 1, 0, 524320, 0, 0, 655328, 0, 0, 589856, 0, 0, 720864, 0, 0, 655392, 0, 0, 786400, 0, 0, 786415, 1, 0, 786416, 1, 0, 786417, 1, 0, 786418, 1, 0, 720917, 1, 0, 720918, 1, 0, 720919, 1, 0, 720928, 0, 0, 851936, 0, 0, 851964, 1, 0, 851965, 1, 0, 851966, 1, 0, 851967, 1, 0, 786434, 3, 0, 786464, 0, 0, 917472, 0, 0, 851970, 4, 0, 851974, 1, 0, 851975, 1, 0, 851976, 1, 0, 852000, 0, 0, 983008, 0, 0, 917506, 4, 0, 917536, 0, 0, 1048544, 0, 0, 983042, 4, 0, 983072, 0, 0, 1114080, 0, 0, 1048578, 4, 0, 1048608, 0, 0, 1179616, 0, 0, 1179617, 0, 0, 1179618, 0, 0, 1179619, 0, 0, 1179620, 0, 0, 1179621, 0, 0, 1179622, 0, 0, 1179623, 0, 0, 1179624, 0, 0, 1179625, 0, 0, 1179626, 0, 0, 1179627, 0, 0, 1179628, 0, 0, 1179629, 0, 0, 1179630, 0, 0, 1179631, 0, 0, 1179632, 0, 0, 1179633, 0, 0, 1179634, 0, 0, 1179635, 0, 0, 1179636, 0, 0, 1179637, 0, 0, 1179638, 0, 0, 1179639, 0, 0, 1179640, 0, 0, 1179641, 0, 0, 1179642, 0, 0, 1179643, 0, 0, 1179644, 0, 0, 1179645, 0, 0, 1179646, 0, 0, 1179647, 0, 0, 1114112, 0, 0, 1114113, 0, 0, 1114114, 0, 0, 1114115, 0, 0, 1114116, 0, 0, 1114117, 0, 0, 1114118, 0, 0, 1114119, 0, 0, 1114120, 0, 0, 1114121, 0, 0, 1114122, 0, 0, 1114123, 0, 0, 1114124, 0, 0, 1114125, 0, 0, 1114126, 0, 0, 1114127, 0, 0, 1114128, 0, 0, 1114129, 0, 0, 1114130, 0, 0, 1114131, 0, 0, 1114132, 0, 0, 1114133, 0, 0, 1114134, 0, 0, 1114135, 0, 0, 1114136, 0, 0, 1114137, 0, 0, 1114138, 0, 0, 1114139, 0, 0, 1114140, 0, 0, 1114141, 0, 0, 1114142, 0, 0, 1114143, 0, 0, 1114144, 0, 0 )
+
+[node name="KinematicBody2D" type="KinematicBody2D" parent="."]
+position = Vector2( 14, -43 )
+script = SubResource( 1 )
+
+[node name="Sprite" type="Sprite" parent="KinematicBody2D"]
+scale = Vector2( 0.25, 0.25 )
+texture = ExtResource( 3 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="KinematicBody2D"]
+shape = SubResource( 2 )
+
+[node name="Camera2D" type="Camera2D" parent="KinematicBody2D"]
+current = true
+zoom = Vector2( 0.3, 0.3 )
+
+[node name="CanvasLayer" type="CanvasLayer" parent="KinematicBody2D/Camera2D"]
+
+[node name="Sprite" type="Sprite" parent="KinematicBody2D/Camera2D/CanvasLayer"]
+position = Vector2( 521, 277 )
+scale = Vector2( 0.482955, 0.433333 )
+texture = ExtResource( 4 )
+
+[node name="Label" type="Label" parent="KinematicBody2D/Camera2D/CanvasLayer/Sprite"]
+margin_left = -142.871
+margin_top = -270.0
+margin_right = -75.8707
+margin_bottom = -256.0
+rect_scale = Vector2( 4, 4 )
+text = "Platformer"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label2" type="Label" parent="KinematicBody2D/Camera2D/CanvasLayer/Sprite"]
+margin_left = -337.506
+margin_top = -156.923
+margin_right = -115.506
+margin_bottom = -74.9231
+rect_scale = Vector2( 3, 3 )
+text = "Dies ist ein Spiel, welches ein Knock-off von Jakobs ist.
+Man bewegst sich mit A und D, springt mit W und dreht mit Q und E die Welt. Es gibt kein Ziel."
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Button" type="Button" parent="KinematicBody2D/Camera2D/CanvasLayer/Sprite"]
+pause_mode = 2
+margin_left = -51.7648
+margin_top = 131.538
+margin_right = -16.7648
+margin_bottom = 151.538
+rect_scale = Vector2( 3, 3 )
+text = "OK!"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[connection signal="pressed" from="KinematicBody2D/Camera2D/CanvasLayer/Sprite/Button" to="KinematicBody2D" method="_on_Button_pressed"]
