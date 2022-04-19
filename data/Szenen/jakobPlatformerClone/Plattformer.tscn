@@ -36,9 +36,9 @@ func get_input():
 		velocity.x += speed
 	if(Input.is_action_pressed(\"A\")):
 		velocity.x -= speed
-	if(Input.is_action_just_pressed(\"Q\")):
+	if(Input.is_action_pressed(\"Q\")):
 		get_parent().turnL()
-	if(Input.is_action_just_pressed(\"E\")):
+	if(Input.is_action_pressed(\"E\")):
 		get_parent().turnR()
 	if(Input.is_action_just_pressed(\"R\")):
 		get_tree().reload_current_scene()
